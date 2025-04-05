@@ -36,7 +36,6 @@ public class JwtUtil {
                 return null;
             }
 
-            log.info("Generating token for username: {}", username);
             Map<String, Object> claims = new HashMap<>();
 
             Date now = new Date();
@@ -50,7 +49,6 @@ public class JwtUtil {
                     .signWith(signingKey)
                     .compact();
 
-            log.info("Token generated successfully");
             return token;
         } catch (Exception e) {
             log.error("Error generating token: {}", e.getMessage(), e);
