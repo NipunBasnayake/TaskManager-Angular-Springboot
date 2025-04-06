@@ -1,0 +1,28 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+  }
+  
+  mat-card {
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .full-width {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .login-link {
+    text-align: center;
+    margin-top: 10px;
+  }

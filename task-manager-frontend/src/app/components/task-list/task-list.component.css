@@ -1,0 +1,70 @@
+.task-list-container {
+    padding: 20px;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+
+  .filter-container mat-form-field {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+  }
+
+  .error-message, .no-tasks-message {
+    text-align: center;
+    padding: 20px;
+    color: #f44336;
+    font-weight: 500;
+  }
+
+  .no-tasks-message {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .status-todo {
+    background-color: #e0e0e0;
+    color: #616161;
+  }
+
+  .status-progress {
+    background-color: #bbdefb;
+    color: #1976d2;
+  }
+
+  .status-done {
+    background-color: #c8e6c9;
+    color: #388e3c;
+  }

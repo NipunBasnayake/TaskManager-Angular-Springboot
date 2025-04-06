@@ -1,0 +1,46 @@
+<div class="container">
+    <mat-card class="welcome-card">
+      <mat-card-header>
+        <mat-card-title>Welcome to Task Manager</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Task Manager is a simple application to help you organize and keep track of your tasks.
+          Login or register to start managing your tasks today!
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" [routerLink]="['/login']">Login</button>
+        <button mat-raised-button color="accent" [routerLink]="['/register']">Register</button>
+      </mat-card-actions>
+    </mat-card>
+    
+    <div class="features">
+      <mat-card class="feature-card">
+        <mat-card-header>
+          <mat-card-title>Create Tasks</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Easily create and organize your tasks with our intuitive interface.</p>
+        </mat-card-content>
+      </mat-card>
+      
+      <mat-card class="feature-card">
+        <mat-card-header>
+          <mat-card-title>Track Progress</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Monitor your productivity and see your progress over time.</p>
+        </mat-card-content>
+      </mat-card>
+      
+      <mat-card class="feature-card">
+        <mat-card-header>
+          <mat-card-title>Stay Organized</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Categorize and prioritize your tasks to stay on top of your responsibilities.</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
