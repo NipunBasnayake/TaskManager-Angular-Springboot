@@ -3,9 +3,13 @@ package edu.nipun.taskmanager.controller;
 import edu.nipun.taskmanager.dto.TaskDTO;
 import edu.nipun.taskmanager.service.TaskService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/tasks")
 @RequiredArgsConstructor
+@Validated
 public class TaskController {
 
     private final TaskService taskService;
@@ -23,12 +28,17 @@ public class TaskController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TaskDTO> getTaskById(@PathVariable Long id) {
+    public ResponseEntity<TaskDTO> getTaskById(
+            @PathVariable @Min(value = 1, message = "ID must be positive") Long id) {
         return ResponseEntity.ok(taskService.getTaskById(id));
     }
 
     @GetMapping("/status/{status}")
-    public ResponseEntity<List<TaskDTO>> getTasksByStatus(@PathVariable String status) {
+    public ResponseEntity<List<TaskDTO>> getTasksByStatus(
+            @PathVariable @NotBlank @Pattern(
+                    regexp = "^(TODO|IN_PROGRESS|COMPLETED)$",
+                    message = "Status must be one of: TODO, IN_PROGRESS, COMPLETED"
+            ) String status) {
         return ResponseEntity.ok(taskService.getTasksByStatus(status));
     }
 
@@ -38,12 +48,15 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TaskDTO> updateTask(@PathVariable Long id, @Valid @RequestBody TaskDTO taskDTO) {
+    public ResponseEntity<TaskDTO> updateTask(
+            @PathVariable @Min(value = 1, message = "ID must be positive") Long id,
+            @Valid @RequestBody TaskDTO taskDTO) {
         return ResponseEntity.ok(taskService.updateTask(id, taskDTO));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteTask(
+            @PathVariable @Min(value = 1, message = "ID must be positive") Long id) {
         taskService.deleteTask(id);
         return ResponseEntity.noContent().build();
     }

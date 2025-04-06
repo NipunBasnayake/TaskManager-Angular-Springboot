@@ -1,6 +1,7 @@
 package edu.nipun.taskmanager.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,8 @@ public class TaskDTO {
     private String description;
 
     @NotBlank(message = "Status is required")
+    @Pattern(regexp = "^(TODO|IN_PROGRESS|COMPLETED)$",
+            message = "Status must be one of: TODO, IN_PROGRESS, COMPLETED")
     private String status;
 
     private LocalDateTime createdAt;
