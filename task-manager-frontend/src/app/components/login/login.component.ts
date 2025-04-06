@@ -1,5 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -29,10 +34,10 @@ import { Subscription } from 'rxjs';
     MatProgressSpinnerModule,
     MatIconModule,
     MatCheckboxModule,
-    MatDividerModule
+    MatDividerModule,
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm!: FormGroup;
@@ -50,7 +55,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private authService: AuthService,
     private snackBar: MatSnackBar
-  ) { 
+  ) {
     if (this.authService.isLoggedIn()) {
       this.router.navigate(['/tasks']);
     }
@@ -58,21 +63,17 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      username: ['', [
-        Validators.required,
-        Validators.minLength(3)
-      ]],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(6)
-      ]],
-      rememberMe: [false]
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      rememberMe: [false],
     });
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/tasks';
   }
 
-  get f() { return this.loginForm.controls; }
+  get f() {
+    return this.loginForm.controls;
+  }
 
   onSubmit(): void {
     this.submitted = true;
@@ -85,64 +86,65 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.loginAttempts++;
 
-    this.authSubscription = this.authService.login({
-      username: this.f['username'].value,
-      password: this.f['password'].value,
-      // rememberMe: this.f['rememberMe']?.value || false
-    })
-    .pipe(
-      first(),
-      finalize(() => {
-        this.loading = false;
+    this.authSubscription = this.authService
+      .login({
+        username: this.f['username'].value,
+        password: this.f['password'].value,
       })
-    )
-    .subscribe({
-      next: () => {
-        this.snackBar.open('Login successful! Redirecting...', 'Close', {
-          duration: 2000,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-          panelClass: ['success-snackbar']
-        });
-        
-        setTimeout(() => {
-          this.router.navigate([this.returnUrl]);
-        }, 500);
-      },
-      error: err => {
-        this.error = 'Invalid username or password';
-        
-        let errorMessage = this.error;
-        if (this.loginAttempts >= 3) {
-          errorMessage = 'Multiple failed login attempts. Need help? Contact support.';
-        } else if (err.status === 401) {
-          errorMessage = 'Invalid username or password';
-        } else if (err.status === 403) {
-          errorMessage = 'Your account is locked. Please contact support.';
-        } else if (!navigator.onLine) {
-          errorMessage = 'No internet connection. Please check your network.';
-        } else if (err.status >= 500) {
-          errorMessage = 'Server error. Please try again later.';
-        }
-        
-        this.snackBar.open(errorMessage, 'Close', {
-          duration: 5000,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
-      }
-    });
+      .pipe(
+        first(),
+        finalize(() => {
+          this.loading = false;
+        })
+      )
+      .subscribe({
+        next: () => {
+          this.snackBar.open('Login successful! Redirecting...', 'Close', {
+            duration: 2000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            panelClass: ['success-snackbar'],
+          });
+
+          setTimeout(() => {
+            this.router.navigate([this.returnUrl]);
+          }, 500);
+        },
+        error: (err) => {
+          this.error = 'Invalid username or password';
+
+          let errorMessage = this.error;
+          if (this.loginAttempts >= 3) {
+            errorMessage =
+              'Multiple failed login attempts. Need help? Contact support.';
+          } else if (err.status === 401) {
+            errorMessage = 'Invalid username or password';
+          } else if (err.status === 403) {
+            errorMessage = 'Your account is locked. Please contact support.';
+          } else if (!navigator.onLine) {
+            errorMessage = 'No internet connection. Please check your network.';
+          } else if (err.status >= 500) {
+            errorMessage = 'Server error. Please try again later.';
+          }
+
+          this.snackBar.open(errorMessage, 'Close', {
+            duration: 5000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            panelClass: ['error-snackbar'],
+          });
+        },
+      });
   }
 
   private highlightFormErrors(): void {
-    Object.keys(this.loginForm.controls).forEach(key => {
+    Object.keys(this.loginForm.controls).forEach((key) => {
       const control = this.loginForm.get(key);
       if (control?.invalid) {
         control.markAsTouched();
       }
     });
-    
+
     const invalidControl = document.querySelector('.ng-invalid');
     if (invalidControl) {
       (invalidControl as HTMLElement).focus();
@@ -162,7 +164,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginWithDemo(): void {
     this.loginForm.patchValue({
       username: 'demo',
-      password: 'demo123'
+      password: 'demo123',
     });
     this.onSubmit();
   }
