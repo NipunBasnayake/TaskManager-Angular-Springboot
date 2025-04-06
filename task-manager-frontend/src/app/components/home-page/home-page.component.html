@@ -1,46 +1,87 @@
-<div class="container">
-    <mat-card class="welcome-card">
-      <mat-card-header>
-        <mat-card-title>Welcome to Task Manager</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          Task Manager is a simple application to help you organize and keep track of your tasks.
-          Login or register to start managing your tasks today!
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" [routerLink]="['/login']">Login</button>
-        <button mat-raised-button color="accent" [routerLink]="['/register']">Register</button>
-      </mat-card-actions>
-    </mat-card>
+<div class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Unlock Your Productivity</h1>
+      <p class="hero-subtitle">Organize, track, and accomplish more with our intuitive task management system</p>
+      <div class="hero-buttons">
+        <button mat-raised-button color="primary" class="get-started-btn" [routerLink]="['/register']">Get Started</button>
+        <button mat-stroked-button color="accent" class="login-btn" [routerLink]="['/login']">Sign In</button>
+      </div>
+    </div>
+    <div class="hero-image"></div>
+  </div>
+
+  <div class="container">
+    <div class="section-title">
+      <h2>Boost Your Productivity</h2>
+      <mat-divider></mat-divider>
+    </div>
     
     <div class="features">
-      <mat-card class="feature-card">
+      <mat-card class="feature-card card-create">
+        <div class="feature-icon">
+          <mat-icon>add_task</mat-icon>
+        </div>
         <mat-card-header>
-          <mat-card-title>Create Tasks</mat-card-title>
+          <mat-card-title>Create & Organize</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <p>Easily create and organize your tasks with our intuitive interface.</p>
+          <p>Easily create, categorize and organize your tasks with our intuitive drag-and-drop interface.</p>
         </mat-card-content>
       </mat-card>
       
-      <mat-card class="feature-card">
+      <mat-card class="feature-card card-track">
+        <div class="feature-icon">
+          <mat-icon>insights</mat-icon>
+        </div>
         <mat-card-header>
           <mat-card-title>Track Progress</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <p>Monitor your productivity and see your progress over time.</p>
+          <p>Visualize your productivity with beautiful charts and monitor progress toward your goals in real-time.</p>
         </mat-card-content>
       </mat-card>
       
-      <mat-card class="feature-card">
+      <mat-card class="feature-card card-organized">
+        <div class="feature-icon">
+          <mat-icon>schedule</mat-icon>
+        </div>
         <mat-card-header>
-          <mat-card-title>Stay Organized</mat-card-title>
+          <mat-card-title>Stay On Schedule</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <p>Categorize and prioritize your tasks to stay on top of your responsibilities.</p>
+          <p>Set deadlines, reminders, and priorities to ensure you never miss an important task again.</p>
         </mat-card-content>
       </mat-card>
+    </div>
+
+    <div class="section-title testimonials-title">
+      <h2>What Our Users Say</h2>
+      <mat-divider></mat-divider>
+    </div>
+
+    <div class="testimonials">
+      <mat-card class="testimonial-card">
+        <div class="testimonial-avatar avatar-1"></div>
+        <mat-card-content>
+          <p class="testimonial-text">"This task manager transformed how I work. I'm 40% more productive since I started using it!"</p>
+          <p class="testimonial-author">— Sarah J., Marketing Director</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="testimonial-card">
+        <div class="testimonial-avatar avatar-2"></div>
+        <mat-card-content>
+          <p class="testimonial-text">"The visual progress tracking keeps me motivated and on target with all my projects."</p>
+          <p class="testimonial-author">— Michael T., Software Developer</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="cta-section">
+      <div class="cta-content">
+        <h2>Ready to Start?</h2>
+        <p>Join thousands of productive users today.</p>
+        <button mat-raised-button color="primary" class="cta-button" [routerLink]="['/register']">Create Free Account</button>
+      </div>
     </div>
   </div>
