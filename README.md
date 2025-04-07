@@ -113,7 +113,7 @@ public class Task {
 JWT authentication has been implemented. Default user credentials:
 
 - Username: admin
-- Password: securePassword123
+- Password: admin123
 
 To authenticate:
 1. Login at: http://localhost:4200/login or via POST `/api/auth/login`
