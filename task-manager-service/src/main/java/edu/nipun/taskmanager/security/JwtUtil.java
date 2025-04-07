@@ -41,19 +41,17 @@ public class JwtUtil {
             Date now = new Date();
             Date expiration = new Date(now.getTime() + expirationTime);
 
-            String token = Jwts.builder()
+            return Jwts.builder()
                     .claims(claims)
                     .subject(username)
                     .issuedAt(now)
                     .expiration(expiration)
                     .signWith(signingKey)
                     .compact();
-
-            return token;
         } catch (Exception e) {
             log.error("Error generating token: {}", e.getMessage(), e);
-            throw new RuntimeException("Failed to generate JWT token", e);
         }
+        return null;
     }
 
     public String extractUsername(String token) {
@@ -99,20 +97,6 @@ public class JwtUtil {
         } catch (JwtException e) {
             log.error("Error checking token expiration: {}", e.getMessage(), e);
             return true;
-        }
-    }
-
-    public Date extractExpiration(String token) {
-        try {
-            Claims claims = Jwts.parser()
-                    .verifyWith(signingKey)
-                    .build()
-                    .parseSignedClaims(token)
-                    .getPayload();
-            return claims.getExpiration();
-        } catch (JwtException e) {
-            log.error("Error extracting expiration date: {}", e.getMessage(), e);
-            return null;
         }
     }
 }

@@ -102,7 +102,7 @@
     </dependencies>
 
     <build>
-        <finalName>dockerTaskManager</finalName>
+        <finalName>taskmanager_docker</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

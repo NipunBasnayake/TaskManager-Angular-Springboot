@@ -15,6 +15,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
 
+    private static final String TASK_NOT_FOUND_MESSAGE = "Task not found with id: ";
+
     private final TaskRepository taskRepository;
     private final ModelMapper modelMapper;
 
@@ -29,7 +31,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public TaskDTO getTaskById(Long id) {
         Task task = taskRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Task not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(TASK_NOT_FOUND_MESSAGE + id));
         return modelMapper.map(task, TaskDTO.class);
     }
 
@@ -50,7 +52,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public TaskDTO updateTask(Long id, TaskDTO taskDTO) {
         Task existingTask = taskRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Task not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(TASK_NOT_FOUND_MESSAGE + id));
 
         existingTask.setTitle(taskDTO.getTitle());
         existingTask.setDescription(taskDTO.getDescription());
@@ -63,7 +65,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void deleteTask(Long id) {
         if (!taskRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Task not found with id: " + id);
+            throw new ResourceNotFoundException(TASK_NOT_FOUND_MESSAGE + id);
         }
         taskRepository.deleteById(id);
     }

@@ -1,13 +1,10 @@
-FROM openjdk:17-jdk-slim
-
+FROM maven:3.9.4-eclipse-temurin-17 AS builder
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-COPY target/*.jar app.jar
-
+FROM eclipse-temurin:17-jdk-alpine
+WORKDIR /app
+COPY --from=builder /app/target/taskmanager_docker.jar app.jar
 EXPOSE 8080
-
-ENV SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/task_manager_db
-ENV SPRING_DATASOURCE_USERNAME=root
-ENV SPRING_DATASOURCE_PASSWORD=1234
-
 ENTRYPOINT ["java", "-jar", "app.jar"]
