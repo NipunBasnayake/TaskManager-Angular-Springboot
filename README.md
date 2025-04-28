@@ -103,7 +103,7 @@ public class Task {
     private Long id;
     private String title;
     private String description;
-    private String status; // TO_DO, IN_PROGRESS, DONE
+    private String status;
     private LocalDateTime createdAt;
 }
 ```
@@ -113,7 +113,7 @@ public class Task {
 JWT authentication has been implemented. Default user credentials:
 
 - Username: admin
-- Password: securePassword123
+- Password: admin123
 
 To authenticate:
 1. Login at: http://localhost:4200/login or via POST `/api/auth/login`
@@ -134,17 +134,23 @@ To authenticate:
 
 ## Screenshots
 
+### Home Page
+![Home](Screenshots/home.png)
+
+### Login Form
+![Login Form](Screenshots/login.png)
+
+### Register Form
+![Register Form](Screenshots/register.png)
+
 ### Task List Page
-![Task List](screenshots/task-list.png)
+![Task List](Screenshots/tasklist.png)
 
-### Task Form
-![Task Form](screenshots/task-form.png)
+### Create Task
+![Create Task](Screenshots/createtask.png)
 
-### Task Details
-![Task Details](screenshots/task-details.png)
-
-### Login Page
-![Login Page](screenshots/login.png)
+### Edit Task
+![Edit Task](Screenshots/edittask.png)
 
 ## Troubleshooting
 
