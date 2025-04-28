@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/tasks")
 @RequiredArgsConstructor
@@ -51,6 +53,7 @@ public class TaskController {
     public ResponseEntity<TaskDTO> updateTask(
             @PathVariable @Min(value = 1, message = "ID must be positive") Long id,
             @Valid @RequestBody TaskDTO taskDTO) {
+        log.info(taskDTO.toString());
         return ResponseEntity.ok(taskService.updateTask(id, taskDTO));
     }
 

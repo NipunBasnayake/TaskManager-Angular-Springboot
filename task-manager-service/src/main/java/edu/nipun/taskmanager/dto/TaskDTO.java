@@ -23,9 +23,9 @@ public class TaskDTO {
     private String description;
 
     @NotBlank(message = "Status is required")
-    @Pattern(regexp = "^(TODO|IN_PROGRESS|COMPLETED)$",
-            message = "Status must be one of: TODO, IN_PROGRESS, COMPLETED")
+    @Pattern(regexp = "^(TO_DO|IN_PROGRESS|DONE)$",
+            message = "Status must be one of: TO_DO, IN_PROGRESS, DONE")
     private String status;
-
+    
     private LocalDateTime createdAt;
 }

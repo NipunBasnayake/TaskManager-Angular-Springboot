@@ -6,11 +6,13 @@ import edu.nipun.taskmanager.exception.ResourceNotFoundException;
 import edu.nipun.taskmanager.repository.TaskRepository;
 import edu.nipun.taskmanager.service.TaskService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
@@ -51,6 +53,8 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public TaskDTO updateTask(Long id, TaskDTO taskDTO) {
+        log.info(taskDTO.toString());
+
         Task existingTask = taskRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TASK_NOT_FOUND_MESSAGE + id));
 

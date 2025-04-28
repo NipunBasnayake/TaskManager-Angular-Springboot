@@ -101,8 +101,9 @@ export class TaskFormComponent implements OnInit {
     };
 
     if (this.isEditMode) {
+      
       this.taskService.updateTask(this.taskId!, taskData)
-        .subscribe({
+        .subscribe({          
           next: () => {
             this.snackBar.open('Task updated successfully', 'Close', { duration: 3000 });
             this.router.navigate(['/tasks']);
@@ -113,7 +114,7 @@ export class TaskFormComponent implements OnInit {
           }
         });
     } else {
-      this.taskService.createTask(taskData)
+      this.taskService.createTask(taskData)      
         .subscribe({
           next: () => {
             this.snackBar.open('Task created successfully', 'Close', { duration: 3000 });

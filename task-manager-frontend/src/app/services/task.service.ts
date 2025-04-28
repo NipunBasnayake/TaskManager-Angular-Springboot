@@ -29,6 +29,8 @@ export class TaskService {
   }
 
   updateTask(id: number, task: Task): Observable<Task> {
+    console.log(task);
+    
     return this.http.put<Task>(`${this.apiUrl}/${id}`, task);
   }
 
